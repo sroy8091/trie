@@ -43,12 +43,12 @@ func insert(word string, root *trie) {
 	node.is_end = true
 }
 
-func autocomplete_util(node *trie, prefix string, res *[]string) {
+func autocompleteUtil(node *trie, prefix string, res *[]string) {
 	if node.is_end{
 		*res = append(*res, prefix)
 	}
 	for _, i := range node.childrens {
-		autocomplete_util(i, prefix+string(i.character), res)
+		autocompleteUtil(i, prefix+string(i.character), res)
 	}
 }
 
@@ -70,7 +70,7 @@ func autocomplete(root *trie, prefix string) {
 		}
 		node = d
 	}
-	autocomplete_util(node, prefix, &res)
+	autocompleteUtil(node, prefix, &res)
 	fmt.Println(res)
 }
 
